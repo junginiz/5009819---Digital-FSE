@@ -1,0 +1,43 @@
+import java.util.HashMap;
+import java.util.Map;
+
+class Inventory {
+    private Map<Integer, Product> products;
+
+    public Inventory() {
+        products = new HashMap<>();
+    }
+
+    public void addProduct(int productId, String productName, int quantity, double price) {
+        Product product = new Product(productId, productName, quantity, price);
+        products.put(productId, product);
+        System.out.println("Product added: " + product);
+    }
+
+    public void updateProduct(int productId, String productName, int quantity, double price) {
+        Product product = products.get(productId);
+        if (product != null) {
+            product.setProductName(productName);
+            product.setQuantity(quantity);
+            product.setPrice(price);
+            System.out.println("Product updated: " + product);
+        } else {
+            System.out.println("Product not found with ID: " + productId);
+        }
+    }
+
+    public void deleteProduct(int productId) {
+        Product removedProduct = products.remove(productId);
+        if (removedProduct != null) {
+            System.out.println("Product removed: " + removedProduct);
+        } else {
+            System.out.println("Product not found with ID: " + productId);
+        }
+    }
+
+    public void displayProducts() {
+        for (Product product : products.values()) {
+            System.out.println(product);
+        }
+    }
+}
